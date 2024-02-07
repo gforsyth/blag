@@ -1,0 +1,20 @@
+project:
+  type: website
+
+website:
+  title: "Small things Gil learns"
+  navbar:
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/gforsyth
+      - icon: mastodon
+        href: https://fosstodon.org/@gforsyth
+
+format:
+  html:
+    theme: darkly
+    css: styles.css
+
+
+

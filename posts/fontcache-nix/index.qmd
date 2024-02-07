@@ -1,0 +1,31 @@
+---
+title: "Add a directory for `fc-cache` to scan"
+author: "gil"
+date: "2024-02-07"
+categories: [nix]
+---
+
+I've been using `nixpkgs` to install things on my `$WORK_LAPTOP`, as they're a
+bit faster to resolve as compared to using `apt`. `nixpkgs` also provides more
+updated packages, generally.
+
+I installed FiraCodeNerd because I felt like it was time for a change in my
+terminal, but I couldn't get `fc-cache` to pick it up. I'm using `nix profile
+install` for this and the installed contents tend to end up _somewhere_ inside
+`$HOME/.nix-profile/`.
+
+I found them in `$HOME/.nix-profile/share/fonts`. Then, after delving through a
+few manpages, discovered that I could create a new file in `/etc/fonts/local.conf`
+to add a directory for the `fc-cache` search.
+
+I had to create `/etc/fonts/local.conf` as follows:
+
+```sh
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+ <dir>/home/gil/.nix-profile/share/fonts/</dir>
+</fontconfig>
+```
+
+And it worked!
